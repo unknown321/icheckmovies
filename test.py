@@ -2,7 +2,7 @@
 import bs4
 import json
 
-filename = "index.html?showall=true"
+filename = "index.html"
 output = 'result.json'
 
 f = open(filename,'r')
@@ -28,7 +28,7 @@ for t in types:
             if 'min' in i:
                 length = i.replace(' ','').strip('\n')
         director = details.find('a').text
-        cover = 'https://beta.icheckmovies.com/{}'.format(bb.find('img',{"class":"movie-cover"}).attrs['src'])
+        cover = 'https://beta.icheckmovies.com{}'.format(bb.find('img',{"class":"movie-cover"}).attrs['src'])
         imdb_link = bb.find('a',{"class":"external"}).attrs['href']
         genres_raw = bb.find('small',{"class":"compact"}).find_all('a')
         genres = []
@@ -46,6 +46,6 @@ for t in types:
             }
         blocks[int(list(rank)[0]) - 1] = movie_info
 
-f = open(result,'w')
+f = open(output,'w')
 f.write(json.dumps(blocks))
 f.close()
