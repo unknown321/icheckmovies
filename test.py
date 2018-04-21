@@ -25,7 +25,7 @@ for t in types:
         length_candidates = details.text.split('·')
         length = ''
         for i in length_candidates:
-            if 'min' in i:
+            if ' min' in i:
                 length = i.replace(' ','').strip('\n')
         director = details.find('a').text
         cover = 'https://beta.icheckmovies.com{}'.format(bb.find('img',{"class":"movie-cover"}).attrs['src'])
